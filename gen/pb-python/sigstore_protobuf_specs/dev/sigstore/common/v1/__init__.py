@@ -49,6 +49,18 @@ class PublicKeyDetails(betterproto.Enum):
     """Ed 25519"""
 
 
+class SupportedAlgorithm(betterproto.Enum):
+    """
+    SupportedAlgorithm captures the signature/hash algorithm combinations
+    allowed in the Sigstore ecosystem. This is modelled as a linear set as we
+    want to provide a small number of opinionated options instead of allowing
+    every possible permutation.
+    """
+
+    ECDSA_SHA2_256_NISTP256 = 0
+    ED25519 = 1
+
+
 class SubjectAlternativeNameType(betterproto.Enum):
     SUBJECT_ALTERNATIVE_NAME_TYPE_UNSPECIFIED = 0
     EMAIL = 1

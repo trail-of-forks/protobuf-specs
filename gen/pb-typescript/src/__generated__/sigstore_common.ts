@@ -117,6 +117,42 @@ export function publicKeyDetailsToJSON(object: PublicKeyDetails): string {
   }
 }
 
+/**
+ * SupportedAlgorithm captures the signature/hash algorithm combinations allowed
+ * in the Sigstore ecosystem.
+ *
+ * This is modelled as a linear set as we want to provide a small number of
+ * opinionated options instead of allowing every possible permutation.
+ */
+export enum SupportedAlgorithm {
+  ECDSA_SHA2_256_NISTP256 = 0,
+  ED25519 = 1,
+}
+
+export function supportedAlgorithmFromJSON(object: any): SupportedAlgorithm {
+  switch (object) {
+    case 0:
+    case "ECDSA_SHA2_256_NISTP256":
+      return SupportedAlgorithm.ECDSA_SHA2_256_NISTP256;
+    case 1:
+    case "ED25519":
+      return SupportedAlgorithm.ED25519;
+    default:
+      throw new tsProtoGlobalThis.Error("Unrecognized enum value " + object + " for enum SupportedAlgorithm");
+  }
+}
+
+export function supportedAlgorithmToJSON(object: SupportedAlgorithm): string {
+  switch (object) {
+    case SupportedAlgorithm.ECDSA_SHA2_256_NISTP256:
+      return "ECDSA_SHA2_256_NISTP256";
+    case SupportedAlgorithm.ED25519:
+      return "ED25519";
+    default:
+      throw new tsProtoGlobalThis.Error("Unrecognized enum value " + object + " for enum SupportedAlgorithm");
+  }
+}
+
 export enum SubjectAlternativeNameType {
   SUBJECT_ALTERNATIVE_NAME_TYPE_UNSPECIFIED = 0,
   EMAIL = 1,

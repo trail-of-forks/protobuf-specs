@@ -68,6 +68,16 @@ message HashOutput {
         bytes digest = 2;
 }
 
+// SupportedAlgorithm captures the signature/hash algorithm combinations allowed
+// in the Sigstore ecosystem.
+//
+// This is modelled as a linear set as we want to provide a small number of
+// opinionated options instead of allowing every possible permutation.
+enum SupportedAlgorithm {
+        ECDSA_SHA2_256_NISTP256 = 0;
+        ED25519 = 1;
+}
+
 // MessageSignature stores the computed signature over a message.
 message MessageSignature {
         // Message digest can be used to identify the artifact.
